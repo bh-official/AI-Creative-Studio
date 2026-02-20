@@ -1,19 +1,15 @@
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true // Valid for client-side demo; separate backend recommended for production
-});
+const API_URL = 'http://localhost:3001/api';
 
 export const generateImage = async (prompt) => {
     try {
-        const response = await openai.images.generate({
-            model: "dall-e-3",
-            prompt: prompt,
-            n: 1,
-            size: "1024x1024",
+        const response = await fetch(`${API_URL}/generate-image`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt }),
         });
-        return response.data[0].url;
+        if (!response.ok) throw new Error('Failed to generate image');
+        const data = await response.json();
+        return data.url;
     } catch (error) {
         console.error("Error generating image:", error);
         throw error;
@@ -22,11 +18,14 @@ export const generateImage = async (prompt) => {
 
 export const generateChatResponse = async (messages) => {
     try {
-        const response = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: messages,
+        const response = await fetch(`${API_URL}/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages }),
         });
-        return response.choices[0].message;
+        if (!response.ok) throw new Error('Failed to generate chat response');
+        const data = await response.json();
+        return data; // returns the message object { role, content }
     } catch (error) {
         console.error("Error generating chat response:", error);
         throw error;
@@ -35,11 +34,12 @@ export const generateChatResponse = async (messages) => {
 
 export const generateSpeech = async (text) => {
     try {
-        const response = await openai.audio.speech.create({
-            model: "tts-1",
-            voice: "alloy",
-            input: text,
+        const response = await fetch(`${API_URL}/tts`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text }),
         });
+        if (!response.ok) throw new Error('Failed to generate speech');
         const blob = await response.blob();
         return URL.createObjectURL(blob);
     } catch (error) {
