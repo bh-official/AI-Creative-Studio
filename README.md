@@ -1,8 +1,39 @@
 # AI Creative Studio 🎨💬🔊
 
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/bh-official/AI-Creative-Studio)
+[![Live App](https://img.shields.io/badge/Live-Application-green?logo=vercel)](https://ai-creative-studio-1.onrender.com)
+[![Backend API](https://img.shields.io/badge/Backend-API-orange?logo=render)](https://ai-creative-studio-jn08.onrender.com)
 
 **AI Creative Studio** is a modern, all-in-one web dashboard that brings the power of OpenAI's cutting-edge models directly to your fingertips. 
+
+---
+
+## 🚀 The MVP (Minimum Viable Product)
+
+The core mission of this studio is to provide a clean, secure, and unified interface for the most popular AI creative tasks. The current MVP includes:
+
+### 🎨 1. AI Image Generator
+Transform text into high-quality visual art.
+- **Model**: `dall-e-3`
+- **Output**: 1024x1024 high-definition images.
+- **Goal**: Rapid prototyping and visual brainstorming.
+
+### 💬 2. AI Chat Assistant
+A smart, context-aware conversational interface.
+- **Model**: `gpt-4o-mini`
+- **Features**: Lightweight, fast response times, and optimized for creative brainstorming.
+- **Goal**: To act as a "creative companion" during the design process.
+
+### 🔊 3. Text to Speech (TTS)
+Convert written words into natural spoken audio.
+- **Model**: `tts-1` with "Alloy" voice.
+- **Features**: Near-instant conversion with built-in audio playback.
+- **Goal**: To test scripts, content accessibility, and voice-over vibes.
+
+### 🛡️ 4. Security First
+Unlike basic tutorials, this MVP includes a **production-ready security architecture**.
+- **Hidden Keys**: Using a Node.js backend proxy to ensure your API Key never reaches the browser.
+- **Separation of Concerns**: Clean `client/server` split for easier deployment and maintenance.
 
 ---
 
